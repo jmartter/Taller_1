@@ -27,8 +27,7 @@ Este proyecto es una aplicación de Android, la aplicación está compuesta por 
 Muestra de la pantalla de inicio:
 
 
-<img src="screenshots/InicioDia.png" alt="PantallaInicio" width="300"/>
-<img src="screenshots/InicioNoche.png" alt="PantallaInicio" width="300"/>
+<img src="screenshots/InicioDia.png" alt="PantallaInicio" width="300"/> <img src="screenshots/InicioNoche.png" alt="PantallaInicio" width="300"/>
 
 ### `ActividadPrincipal.kt`
 
