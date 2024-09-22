@@ -25,6 +25,8 @@ Este proyecto es una aplicación de Android, la aplicación está compuesta por 
    - Es una función composable que proporciona una vista previa de la pantalla de inicio en el editor.
 
 Muestra de la pantalla de inicio:
+
+
 <img src="screenshots/Inicio.png" alt="PantallaInicio" width="300"/>
 
 ### `ActividadPrincipal.kt`
@@ -45,6 +47,8 @@ Muestra de la pantalla de inicio:
    - Es una función composable que proporciona una vista previa de la pantalla principal en el editor.
 
 Muestra de la pantalla de Actividad Principal:
+
+
 <img src="screenshots/Actividad.png" alt="PantallaActividadPrincipal" width="300"/>
 
 ### `PantallaConfiguracion.kt`
@@ -70,4 +74,6 @@ Muestra de la pantalla de Actividad Principal:
    - Es una función composable que proporciona una vista previa de la pantalla de configuración en el editor.
 
 Muestra de la pantalla de Configuración:
+
+
 <img src="screenshots/Configuracion.png" alt="PantallaConfiguracion" width="300"/>
