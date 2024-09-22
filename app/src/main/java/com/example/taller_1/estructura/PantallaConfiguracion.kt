@@ -1,5 +1,7 @@
+// PantallaConfiguracion.kt
 package com.example.taller_1.estructura
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,6 +46,9 @@ class PantallaConfiguracion : ComponentActivity() {
 @Composable
 fun PantallaConfiguracionScreen(initialColor: Color, onInicioClick: (Int) -> Unit) {
     var selectedColor by remember { mutableStateOf(initialColor) }
+    val context = LocalContext.current
+    val sharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+    val name = sharedPreferences.getString("saved_name", "Usuario") ?: "Usuario"
 
     Column(
         modifier = Modifier
@@ -51,7 +57,7 @@ fun PantallaConfiguracionScreen(initialColor: Color, onInicioClick: (Int) -> Uni
             .padding(16.dp)
     ) {
         Text(
-            text = "Pantalla de Configuración",
+            text = "Pantalla de Configuración de $name",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier

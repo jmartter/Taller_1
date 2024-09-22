@@ -1,5 +1,7 @@
+// ActividadPrincipal.kt
 package com.example.taller_1.estructura
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,6 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,6 +44,8 @@ class ActividadPrincipal : ComponentActivity() {
 fun ActividadPrincipalScreen(backgroundColor: Color, onConfigButtonClick: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var greeting by remember { mutableStateOf("") }
+    val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
 
     Box(
         modifier = Modifier
@@ -70,7 +76,15 @@ fun ActividadPrincipalScreen(backgroundColor: Color, onConfigButtonClick: () -> 
                 label = { Text("Ingresa tu nombre") }
             )
             Spacer(modifier = Modifier.height(25.dp))
-            Button(onClick = { greeting = "Hola, $name" }) {
+            Button(onClick = {
+                val sharedPreferences = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+                with(sharedPreferences.edit()) {
+                    putString("saved_name", name)
+                    apply()
+                }
+                greeting = "Hola, $name"
+                focusManager.clearFocus()
+            }) {
                 Text("Guardar nombre")
             }
             Spacer(modifier = Modifier.height(25.dp))
