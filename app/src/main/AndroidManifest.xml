@@ -29,6 +29,11 @@
             android:theme="@style/Theme.Taller_1" />
 
         <activity
+            android:name=".estructura.PantallaConfiguracion"
+            android:exported="true"
+            android:theme="@style/Theme.Taller_1" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

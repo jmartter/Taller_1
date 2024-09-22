@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -11,6 +12,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,32 +23,38 @@ import com.example.taller_1.ui.theme.Taller_1Theme
 class ActividadPrincipal : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val selectedColor = intent.getIntExtra("selectedColor", Color.White.toArgb())
         setContent {
             Taller_1Theme {
-                ActividadPrincipalScreen()
+                ActividadPrincipalScreen(Color(selectedColor)) {
+                    val intent = Intent(this, PantallaConfiguracion::class.java)
+                    intent.putExtra("selectedColor", selectedColor)
+                    startActivity(intent)
+                }
             }
         }
     }
 }
 
 @Composable
-fun ActividadPrincipalScreen() {
+fun ActividadPrincipalScreen(backgroundColor: Color, onConfigButtonClick: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var greeting by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(backgroundColor)
             .padding(16.dp)
     ) {
         if (greeting.isNotEmpty()) {
             Text(
                 text = greeting,
                 fontSize = 24.sp,
-                fontWeight = FontWeight.Bold, // Asegura que el texto esté en negrita
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = 100.dp) // Ajusta este valor según sea necesario
+                    .padding(top = 100.dp)
             )
         }
         Column(
@@ -65,7 +74,7 @@ fun ActividadPrincipalScreen() {
                 Text("Guardar nombre")
             }
             Spacer(modifier = Modifier.height(25.dp))
-            Button(onClick = { /* Navegar a PantallaConfiguracion */ }) {
+            Button(onClick = onConfigButtonClick) {
                 Text("Ir a la pantalla de configuración")
             }
         }
@@ -76,6 +85,6 @@ fun ActividadPrincipalScreen() {
 @Composable
 fun ActividadPrincipalScreenPreview() {
     Taller_1Theme {
-        ActividadPrincipalScreen()
+        ActividadPrincipalScreen(Color.White) {}
     }
 }

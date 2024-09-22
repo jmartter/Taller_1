@@ -5,12 +5,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,10 +27,13 @@ import java.util.Calendar
 class PantallaInicio : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val selectedColor = intent.getIntExtra("selectedColor", Color.White.toArgb())
         setContent {
             Taller_1Theme {
-                PantallaInicioScreen {
-                    startActivity(Intent(this, ActividadPrincipal::class.java))
+                PantallaInicioScreen(Color(selectedColor)) {
+                    val intent = Intent(this, ActividadPrincipal::class.java)
+                    intent.putExtra("selectedColor", selectedColor)
+                    startActivity(intent)
                     finish()
                 }
             }
@@ -35,11 +42,12 @@ class PantallaInicio : ComponentActivity() {
 }
 
 @Composable
-fun PantallaInicioScreen(onButtonClick: () -> Unit) {
+fun PantallaInicioScreen(backgroundColor: Color, onButtonClick: () -> Unit) {
     val (greeting, isDayTime) = getGreetingMessage()
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(backgroundColor)
             .padding(16.dp),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -78,17 +86,15 @@ fun PantallaInicioScreen(onButtonClick: () -> Unit) {
 
 fun getGreetingMessage(): Pair<String, Boolean> {
     val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-    return if (hour in 6..17) {
-        "Buenos días" to true
-    } else {
-        "Buenas noches" to false
-    }
+    val isDayTime = hour in 6..18
+    val greeting = if (isDayTime) "Buenos días" else "Buenas noches"
+    return Pair(greeting, isDayTime)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PantallaInicioScreenPreview() {
     Taller_1Theme {
-        PantallaInicioScreen {}
+        PantallaInicioScreen(Color.White) {}
     }
 }
