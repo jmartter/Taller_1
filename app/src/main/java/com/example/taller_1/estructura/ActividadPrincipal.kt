@@ -1,4 +1,3 @@
-// ActividadPrincipal.kt
 package com.example.taller_1.estructura
 
 import android.content.Context
@@ -44,6 +43,7 @@ class ActividadPrincipal : ComponentActivity() {
 fun ActividadPrincipalScreen(backgroundColor: Color, onConfigButtonClick: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var greeting by remember { mutableStateOf("") }
+    var showError by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
 
@@ -53,7 +53,7 @@ fun ActividadPrincipalScreen(backgroundColor: Color, onConfigButtonClick: () -> 
             .background(backgroundColor)
             .padding(16.dp)
     ) {
-        if (greeting.isNotEmpty()) {
+        if (greeting.isNotEmpty() && !showError) {
             Text(
                 text = greeting,
                 fontSize = 24.sp,
@@ -72,7 +72,10 @@ fun ActividadPrincipalScreen(backgroundColor: Color, onConfigButtonClick: () -> 
         ) {
             TextField(
                 value = name,
-                onValueChange = { name = it },
+                onValueChange = {
+                    name = it
+                    showError = false
+                },
                 label = { Text("Ingresa tu nombre") }
             )
             Spacer(modifier = Modifier.height(25.dp))
@@ -88,8 +91,22 @@ fun ActividadPrincipalScreen(backgroundColor: Color, onConfigButtonClick: () -> 
                 Text("Guardar nombre")
             }
             Spacer(modifier = Modifier.height(25.dp))
-            Button(onClick = onConfigButtonClick) {
+            Button(onClick = {
+                if (name.isNotEmpty()) {
+                    onConfigButtonClick()
+                } else {
+                    showError = true
+                }
+            }) {
                 Text("Ir a la pantalla de configuración")
+            }
+            if (showError) {
+                Text(
+                    text = "Por favor, ingresa tu nombre antes de continuar.",
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(top = 16.dp)
+                )
             }
         }
     }
