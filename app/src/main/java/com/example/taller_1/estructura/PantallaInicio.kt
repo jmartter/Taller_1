@@ -16,10 +16,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.example.taller_1.MainActivity
 import com.example.taller_1.R
 import com.example.taller_1.ui.theme.Taller_1Theme
-import java.util.*
+import java.util.Calendar
 
 class PantallaInicio : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +26,7 @@ class PantallaInicio : ComponentActivity() {
         setContent {
             Taller_1Theme {
                 PantallaInicioScreen {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, ActividadPrincipal::class.java))
                     finish()
                 }
             }
