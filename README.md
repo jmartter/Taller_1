@@ -4,9 +4,27 @@
 
 [Repositorio en GitHub](https://github.com/jmartter/Taller_1.git)
 
-Este proyecto es una aplicación de Android ,la aplicación está compuesta por tres pantallas diferentes: `PantallaInicio`, `ActividadPrincipal` y `PantallaConfiguracion`.
+Este proyecto es una aplicación de Android, la aplicación está compuesta por tres pantallas diferentes: `PantallaInicio`, `ActividadPrincipal` y `PantallaConfiguracion`.
 
 ## Componentes Principales
+
+### `PantallaInicio.kt`
+
+1. **Clase `PantallaInicio`**:
+   - Es una subclase de `ComponentActivity`.
+   - En el método `onCreate`, se configura la pantalla de inicio usando Jetpack Compose.
+   - Se pasa un color seleccionado a la pantalla de inicio.
+
+2. **Función `PantallaInicioScreen`**:
+   - Es una función composable que define la UI de la pantalla de inicio.
+   - Usa `getGreetingMessage` para obtener un mensaje de saludo basado en la hora del día.
+   - Usa `Image` para mostrar una imagen de banner.
+   - Usa `Button` para navegar a la actividad principal.
+
+3. **Función `PantallaInicioScreenPreview`**:
+   - Es una función composable que proporciona una vista previa de la pantalla de inicio en el editor.
+
+![PantallaInicio](screenshots/Inicio.png)
 
 ### `ActividadPrincipal.kt`
 
@@ -46,4 +64,3 @@ Este proyecto es una aplicación de Android ,la aplicación está compuesta por 
 
 4. **Función `PantallaConfiguracionScreenPreview`**:
    - Es una función composable que proporciona una vista previa de la pantalla de configuración en el editor.
-

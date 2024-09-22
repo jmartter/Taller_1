@@ -1,6 +1,4 @@
-// PantallaConfiguracion.kt
 package com.example.taller_1.estructura
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
