@@ -83,3 +83,6 @@ Muestra de la pantalla de Configuración:
 
 
 <img src="screenshots/Configuracion.png" alt="PantallaConfiguracion" width="300"/>
+
+
+## Autoevaluacion: 1
