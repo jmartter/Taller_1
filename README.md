@@ -10,7 +10,7 @@ Este proyecto es una aplicación de Android, la aplicación está compuesta por 
 
 El código  de este proyecto se encuentra en la siguiente ruta:
 
-`/Users/jose/Documents/GitHub/Taller_1/src/main/java/com/example/taller_1/estructura/`
+`/Taller_1/src/main/java/com/example/taller_1/estructura/`
 
 ## Componentes Principales
 
